@@ -20,7 +20,10 @@ mongoose.connect(url)
     const tetingrout=require("./routs/testingRout.js")
     app.use("/testing",tetingrout);
 
+    const productRout=require("./routs/productRout.js")
+    app.use("/product",productRout);
+
 
     app.listen(PORT,()=>{
-        console.log('Server is up and running on ${PORT}');
+        console.log(`Server is up and running on ${PORT}`);
     })
