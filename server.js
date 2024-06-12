@@ -26,6 +26,9 @@ mongoose.connect(url)
     const userRout=require("./routs/userRout.js")
     app.use("/user",userRout);
 
+    const oderRout=require("./routs/oderRout.js")
+    app.use("/oder",oderRout);
+
     const JsonArrayTestingRout=require("./routs/JsonArrayTestingRout.js")
     app.use("/Jsonuser",JsonArrayTestingRout);
 
