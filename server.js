@@ -26,6 +26,9 @@ mongoose.connect(url)
     const userRout=require("./routs/userRout.js")
     app.use("/user",userRout);
 
+    const JsonArrayTestingRout=require("./routs/JsonArrayTestingRout.js")
+    app.use("/Jsonuser",JsonArrayTestingRout);
+
     app.listen(PORT,()=>{
         console.log(`Server is up and running on ${PORT}`);
     })

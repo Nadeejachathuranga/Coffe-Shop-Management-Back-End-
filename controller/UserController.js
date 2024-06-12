@@ -22,8 +22,8 @@ const UserController={
     findUser:async function (req,res,next){
         try {
             const UserId = req.params.id;
-         const user= await user.find({id:UserId})
-            res.status(200).json(user);
+         const result= await user.findOne({id:UserId})
+            res.status(200).json(result);
         }catch (err){
             console.error("find user by id error:",err)
             res.status(500).json({error:'something went wrong'})
@@ -48,20 +48,7 @@ const UserController={
 
 
     deleteuser:async function (req,res,next){
-     /*   try {
-            const userId = req.params.id;
-            const  deleteuser=await user.deleteOne({
-                id:userId
-            });
-            if (deleteuser.deletedCount==0){
-                return res.status(500).json({error:"can't delete"})
-            }else {
-                return res.status(200).json("deleted")
-            }
-        }catch (err){
-            console.error("delete user by id error:",err)
-            res.status(500).json({error:'something went wrong'})
-        }*/
+
 
         let userId = req.params.id;  
         await user.findByIdAndDelete(userId).then(() => {
