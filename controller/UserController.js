@@ -32,26 +32,23 @@ const UserController={
 
 
     updateUser:async function (req,res,next){
-        try {
-            const userId = req.params.id;
-            const userData= req.body
-           const  updateduser=await user.findOneAndUpdate({
-               id:userId
-           },userData,{new:true});
-            if (!userData){
-                return res.status(500).json({error:"can't update"})
-            }else {
-                return res.status(200).json(userData)
-            }
-        }catch (err){
-            console.error("find user by id error:",err)
-            res.status(500).json({error:'something went wrong'})
-        }
+      
+        let userId=req.params.id;
+        const userdata=req.body;
+    
+       
+        const update=await user.findByIdAndUpdate(userId,userdata).then(()=>{
+            res.status(200).send({status: 'user update'});
+        }).catch((err)=>{
+            console.log(err)
+            res.status(500).send({status: 'user update faild'});
+        })
+    
     },
 
 
     deleteuser:async function (req,res,next){
-        try {
+     /*   try {
             const userId = req.params.id;
             const  deleteuser=await user.deleteOne({
                 id:userId
@@ -64,7 +61,19 @@ const UserController={
         }catch (err){
             console.error("delete user by id error:",err)
             res.status(500).json({error:'something went wrong'})
-        }
+        }*/
+
+        let userId = req.params.id;  
+        await user.findByIdAndDelete(userId).then(() => {
+            res.status(200).send({status : "Record deleted"});
+    
+        }).catch((err) => {
+            console.log(err);
+            res.status(500).send({status : "Error Deleting user" , error: err.message});
+        })
     }
+
+
+   
 }
 module.exports=UserController
