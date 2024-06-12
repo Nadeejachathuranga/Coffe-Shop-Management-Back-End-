@@ -15,7 +15,7 @@ const JsonArrayTstingController={
     findUser:async function (req,res,next){
         try {
             const UserId = req.params.id;
-         const userr= await user.find({id:UserId})
+         const userr= await user.find({oderId:UserId})
             res.status(200).json(userr);
         }catch (err){
             console.error("find user by id error:",err)
