@@ -22,7 +22,7 @@ const UserController={
     findUser:async function (req,res,next){
         try {
             const UserId = req.params.id;
-         const result= await user.findOne({id:UserId})
+         const result= await user.find({email:UserId})
             res.status(200).json(result);
         }catch (err){
             console.error("find user by id error:",err)
