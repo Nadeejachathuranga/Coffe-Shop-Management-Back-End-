@@ -1,5 +1,13 @@
 const router=require('express').Router();
 let testing= require("../models/testingModel.js");
+const testingController = require("../controller/testingController");
+
+
+router.route("/addTesting").post((req,res)=>{
+
+})
+
+router.post("/addTestingsave",testingController.saveProduct);
 
 router.route("/add").post((req,res)=>{
     const name=req.body.name;

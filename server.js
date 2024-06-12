@@ -23,6 +23,8 @@ mongoose.connect(url)
     const productRout=require("./routs/productRout.js")
     app.use("/product",productRout);
 
+    const userRout=require("./routs/userRout.js")
+    app.use("/user",userRout);
 
     app.listen(PORT,()=>{
         console.log(`Server is up and running on ${PORT}`);
