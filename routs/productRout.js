@@ -39,7 +39,7 @@ router.route("/update/:id").put(async(req,res)=>{
         price,
         img
     }
-    const update=await product.findByIdAndUpdate(productId,productUpdate).then(()=>{
+    const update=await product.findOneAndUpdate(productId,productUpdate, { new: true }).then(()=>{
         res.status(200).send({status: 'product update'});
     }).catch((err)=>{
         console.log(err)
@@ -52,7 +52,7 @@ router.route("/update/:id").put(async(req,res)=>{
 router.route("/delete/:id").delete(async(req,res) => {
 
     let productId = req.params.id;  
-    await product.findByIdAndDelete(productId).then(() => {
+    await product.findOneAndDelete(productId).then(() => {
         res.status(200).send({status : "Record deleted"});
 
     }).catch((err) => {
@@ -60,5 +60,22 @@ router.route("/delete/:id").delete(async(req,res) => {
         res.status(500).send({status : "Error Deleting product" , error: err.message});
     })
 })
+
+
+router.route("/find/:id").get(async(req,res) => {
+    try {
+        const productId = req.params.id;
+     const result= await product.find({ProductId:productId})
+        res.status(200).json(result);
+    }catch (err){
+        console.error("find product by id error:",err)
+        res.status(500).json({error:'something went wrong'})
+    }
+
+})
+
+ 
+
+
 
 module.exports=router

@@ -5,6 +5,7 @@ const cors= require("cors");
 const dotenv= require("dotenv");
 const app=express();
 require("dotenv").config();
+
 const PORT= process.env.PORT || 8070;
 
 app.use(cors());
@@ -22,6 +23,9 @@ mongoose.connect(url)
 
     const productRout=require("./routs/productRout.js")
     app.use("/product",productRout);
+
+    const jwttesting=require("./routs/jwttesting.js")
+    app.use("/jwt",jwttesting);
 
     const userRout=require("./routs/userRout.js")
     app.use("/user",userRout);

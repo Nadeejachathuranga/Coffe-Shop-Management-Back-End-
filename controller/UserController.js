@@ -1,4 +1,5 @@
 let user= require("../models/UserModel.js");
+let lUser= require("../models/LoginModel.js");
 
 const UserController={
     saveUser:async function (req, res, next) {
@@ -27,6 +28,24 @@ const UserController={
         }catch (err){
             console.error("find user by id error:",err)
             res.status(500).json({error:'something went wrong'})
+        }
+    },
+
+    loginUser:async function (req,res,next){
+        const { email, password } = req.body;
+
+        try {
+          
+          const use = await user.findOne({ email, password });
+      
+          if (use) {
+            res.json({ authenticated: true });
+          } else {
+            res.json({ authenticated: false });
+          }
+        } catch (error) {
+          console.error('Error finding user:', error);
+          res.status(500).json({ error: 'Internal Server Error' });
         }
     },
 

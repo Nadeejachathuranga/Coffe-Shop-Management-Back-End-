@@ -9,7 +9,8 @@ const OderModelSchema =new Schema({
         price: { type: Number, required: true },
         currency: { type: String, required: true }
     },
-    itemCount: { type: Number, required: true }
+    itemCount: { type: Number, required: true },
+    userID: { type: String, required: true }
 })
 
 const Oder=Mongoose.model("Oder",OderModelSchema);
